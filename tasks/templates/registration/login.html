@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block title %}Login - Task Manager{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2>Login</h2>
+
+    {% if user.is_authenticated %}
+        <p>You are already logged in as {{ user.username }}.</p>
+        <a href="{% url 'home' %}" class="btn btn-secondary">Go to Home</a>
+        <p>If you want to log in as a different user, <a href="{% url 'logout' %}">log out</a> first.</p>
+    {% else %}
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Login</button>
+        </form>
+
+        <p>If you are not registered yet, you can <a href="{% url 'register' %}">register here</a>.</p>
+        <a href="{% url 'password_reset' %}">Forgot your password?</a>
+
+    {% endif %}
+</div>
+{% endblock %}

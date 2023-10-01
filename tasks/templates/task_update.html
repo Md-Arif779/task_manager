@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block title %}Update Task - Task Manager{% endblock %}
+
+{% block content %}
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+
+    <!-- Add a field for selecting multiple images -->
+    <div class="form-group">
+        <label for="{{ form.images.id_for_label }}">Select Images:</label>
+        <input type="file" name="images" id="{{ form.images.id_for_label }}" multiple>
+    </div>
+    <button type="submit" class="btn btn-primary">Create Task</button>
+</form>
+
+{% endblock %}
